@@ -23,6 +23,7 @@ if platform.system() != 'Windows':
 
 from models.common import *  # noqa
 from models.experimental import *  # noqa
+from models.fasternet import *
 from utils.autoanchor import check_anchor_order
 from utils.general import LOGGER, check_version, check_yaml, make_divisible, print_args
 from utils.plots import feature_visualization
@@ -363,9 +364,9 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             t = m
             m = timm.create_model(m, pretrained=args[0], features_only=True)
             c2 = m.feature_info.channels()
-        # elif m in {}:
-        #     m = m(*args)
-        #     c2 = m.channel
+         elif m in {fasternet_t0,fasternet_t1,fasternet_t2,fasternet_s,fasternet_m,fasternet_l}:
+            m = m(*args)
+            c2 = m.channel
         else:
             c2 = ch[f]
         if isinstance(c2, list):
