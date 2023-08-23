@@ -364,7 +364,7 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             t = m
             m = timm.create_model(m, pretrained=args[0], features_only=True)
             c2 = m.feature_info.channels()
-         elif m in {fasternet_t0,fasternet_t1,fasternet_t2,fasternet_s,fasternet_m,fasternet_l}:
+        elif m in {fasternet_t0, fasternet_t1, fasternet_t2, fasternet_s, fasternet_m, fasternet_l}:
             m = m(*args)
             c2 = m.channel
         else:
